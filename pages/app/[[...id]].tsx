@@ -63,7 +63,7 @@ const App: FC<{ folders?: any[]; activeFolder?: any; activeDoc?: any; activeDocs
           <NewFolderButton onClick={() => setIsShown(true)} />
         </Pane>
         <Pane>
-          <FolderList folders={[{_id:1, name:'hello'}]} />{' '}
+          <FolderList folders={folders} />{' '}
         </Pane>
       </Pane>
       <Pane marginLeft={300} width="calc(100vw - 300px)" height="100vh" overflowY="auto" position="relative">
@@ -82,7 +82,7 @@ App.defaultProps = {
 export async function getServerSideProps(ctx){
   const session = await getSession(ctx);
 
-  if(session){
+  if(!session){
     return {
       props: {session},
     }
